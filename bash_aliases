@@ -3,7 +3,7 @@
 #   . ~/.bash_aliases
 #fi
 alias ..='cd ..'
-alias vi='nvim'
+#alias vi='nvim'
 alias nv='nvim'
 alias bashrc='nvim ~/.bashrc && source ~/.bashrc'
 alias aptup='sudo apt update && sudo apt upgrade'
