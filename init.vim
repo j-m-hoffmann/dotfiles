@@ -1,32 +1,33 @@
 set number
 set ts=2 sw=2 sts=2 expandtab
-set clipboard=unnamedplus
+"set clipboard=unnamedplus
 set colorcolumn=80
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'iCyMind/NeoSolarized'
+"Plug 'iCyMind/NeoSolarized'
 
-Plug 'jiangmiao/auto-pairs'
-Plug 'mattn/emmet-vim'
+"Plug 'jiangmiao/auto-pairs'
+"Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 
 "Plug 'w0rp/ale'
 "Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
+"Plug 'pangloss/vim-javascript'
+"Plug 'mxw/vim-jsx'
 
-Plug 'reasonml-editor/vim-reason-plus'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'reasonml-editor/vim-reason-plus'
+"Plug 'autozimu/LanguageClient-neovim', {
+    "\ 'branch': 'next',
+    "\ 'do': 'bash install.sh',
+    "\ }
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
-Plug 'kassio/neoterm'
+"Plug 'kassio/neoterm'
 
 "Plug 'vimlab/split-term.vim'
 "Plug 'jpalardy/vim-slime'
@@ -41,8 +42,8 @@ call plug#end()
 "let g:ale_completion_enabled = 1
 
 " Emmet
-let g:user_emmet_install_global = 0
-autocmd FileType html,css,javascript,reason,jsx,babel EmmetInstall
+"let g:user_emmet_install_global = 0
+"autocmd FileType html,css,javascript,reason,jsx,babel EmmetInstall
 
 " NeoSolarized
 set termguicolors
@@ -117,4 +118,4 @@ nnoremap <silent> gx :call LanguageClient#explainErrorAtPoint()<CR>
 "set splitbelow
 
 " Terminal
-tnoremap <Leader><ESC> <C-\><C-n>
+"tnoremap <Leader><ESC> <C-\><C-n>
