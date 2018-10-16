@@ -70,17 +70,17 @@ let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 
 " OCaml
 "autocmd FileType ocaml set ts=2|set sw=2
-let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
-execute "set rtp+=" . g:opamshare . "/ocp-indent/vim"
+" let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+" execute "set rtp+=" . g:opamshare . "/merlin/vim"
+" execute "set rtp+=" . g:opamshare . "/ocp-indent/vim"
 
-if executable('ocamlmerlin') && has('python')
-  let s:ocamlmerlin = substitute(system('opam config var share'), '\n$', '', '''') . "/merlin"
-  execute "set rtp+=".s:ocamlmerlin."/vim"
-  execute "set rtp+=".s:ocamlmerlin."/vimbufsync"
-endif
+" if executable('ocamlmerlin') && has('python')
+"   let s:ocamlmerlin = substitute(system('opam config var share'), '\n$', '', '''') . "/merlin"
+"   execute "set rtp+=".s:ocamlmerlin."/vim"
+"   execute "set rtp+=".s:ocamlmerlin."/vimbufsync"
+" endif
 
-autocmd FileType ocaml execute "set rtp+=" . substitute(system('opam config var share'), '\n$', '', '''') . "/ocp-indent/vim/indent/ocaml.vim"
+" autocmd FileType ocaml execute "set rtp+=" . substitute(system('opam config var share'), '\n$', '', '''') . "/ocp-indent/vim/indent/ocaml.vim"
 
 " Reason
 
