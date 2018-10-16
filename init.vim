@@ -1,42 +1,78 @@
-set ts=2 sw=2 sts=2 expandtab
+set autowrite
 set number
-set clipboard=unnamed
+set ts=2 sw=2 sts=2 expandtab
+set clipboard=unnamedplus
 set colorcolumn=80
+set wildmenu
 
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'iCyMind/NeoSolarized'
-Plug 'w0rp/ale' 
+
+Plug 'reasonml-editor/vim-reason-plus'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpared'
+
+Plug 'w0rp/ale'
+
 Plug 'roman/golden-ratio'
-Plug 'jpalardy/vim-slime'
 Plug 'vimlab/split-term.vim'
+Plug 'iCyMind/NeoSolarized'
 
-"ocaml
-Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-Plug 'reasonml-editor/vim-reason-plus' 
-
-"lisp plugins
-"Plug 'wlangstroth/vim-racket', { 'for': 'scheme' }
-"Plug 'epeli/slimux', { 'for': 'scheme' }
-"Plug 'kovisoft/paredit', { 'for': 'scheme' }
-"Plug 'kovisoft/slimv'
-
-"elixir plugins
-Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
-Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
-"Plug 'lucidstack/hex.vim', { 'for': 'elixir' }
-
-"erlang plugins
-Plug 'vim-erlang/vim-erlang-omnicomplete', { 'for': 'erlang' }
-Plug 'vim-erlang/vim-erlang-skeletons', { 'for': 'erlang' }
-
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/neco-vim'
-Plug 'Shougo/echodoc.vim'
-
-"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-"Plug 'elmcast/elm-vim', { 'for': 'elm' }
 call plug#end()
+
+"ReasonML
+let g:ale_reasonml_refmt_executable = '/home/user/.yarn/bin/refmt'
+let g:ale_reason_ols_executable = '/home/user/.yarn/bin/ocamlmerlin-server'
+
+" Golang
+"map <C-n> :cnext<CR>
+"map <C-m> :cprevious<CR>
+"nnoremap <leader>a :cclose<CR><Paste>
+"
+"" run :GoBuild or :GoTestCompile based on the go file
+"function! s:build_go_files()
+  "let l:file = expand('%')
+  "if l:file =~# '^\f\+_test\.go$'
+    "call go#test#Test(0, 1)
+  "elseif l:file =~# '^\f\+\.go$'
+    "call go#cmd#Build(0)
+  "endif
+"endfunction
+"
+"autocmd FileType go nmap <leader>r  <Plug>(go-run)
+"autocmd FileType go nmap <leader>t  <Plug>(go-test)
+"autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+"autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+
+function! MyOnBattery()
+    if filereadable('/sys/class/power_supply/AC/online')
+        return readfile('/sys/class/power_supply/AC/online') == ['0']
+    else
+        return 0
+    endif
+endfunction
+
+"ALE
+if MyOnBattery()
+  let g:ale_lint_on_text_changed = 'never'
+  let g:ale_lint_on_enter = 0
+  let g:ale_lint_on_save = 1
+  "call neomake#configure#automake('rw')
+  "else
+  "call neomake#configure#automake('nrw', 500)
+endif
+
+let g:ale_fixers = { 'sh': ['shellcheck'], } 
+let g:ale_sh_shfmt_options = '-i 2 -ci'
+
+"split-term
+set splitbelow
 
 " NeoSolarized
 set termguicolors
@@ -51,7 +87,6 @@ let g:neosolarized_bold = 1
 let g:neosolarized_underline = 1
 let g:neosolarized_italic = 0
 colorscheme NeoSolarized
-
 " Set background according to current time of day.
 let hr = str2nr(strftime('%H'))
 if hr <= 6 || hr > 18
@@ -60,48 +95,5 @@ else
     set background=light
 endif
 
-function! MyOnBattery()
-    if filereadable('/sys/class/power_supply/ACAD/online')
-        return readfile('/sys/class/power_supply/ACAD/online') == ['0']
-    else
-        return 0
-    endif
-endfunction
-
-"ALE
-if MyOnBattery()
-    "call neomake#configure#automake('rw')
-    let g:ale_lint_on_text_changed = 'never'
-    let g:ale_lint_on_enter = 0
-"else
-    "call neomake#configure#automake('nrw', 500)
-endif
-
-let g:deoplete#enable_at_startup = 1
-let g:slime_target = "neovim"
-set splitright
-set splitbelow
-
-"ocaml
-let g:opamshare = substitute(system('opam config var share'),'\n$','','')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
-
-let g:LanguageClient_serverCommands = { 'reason': ['ocaml-language-server', '--stdio'], 'ocaml': ['ocaml-language-server', '--stdio'], }
-
-let g:LanguageClient_autoStart = 1
-let g:ale_ocaml_ols_use_global = 1 
-
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>  
-nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>  
-nnoremap <silent> <cr> :call LanguageClient_textDocument_hover()<cr>  
-
-"if has("autocmd")
-"    au BufReadPost *.rkt,rktl set filetype=scheme
-"endif 
-"autocmd bufread,bufnewfile *.lisp,*.scm,*.rkt setlocal equalprg=scmindent.lua 
-"autocmd filetype lisp,scheme,racket setlocal equalprg=scmindent.lua
-"let g:split_term_vertical = 1
-"let g:neomake_open_list = 2
-"let g:neomake_list_height = 15
-"set cmdheight=2
-"let g:echodoc#enable_at_startup = 1
+packloadall
+silent! helptags ALL
