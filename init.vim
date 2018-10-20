@@ -1,7 +1,35 @@
-set number
-set ts=2 sw=2 sts=2 expandtab
 set clipboard=unnamedplus
 set colorcolumn=80
+set cursorline
+set number
+
+" Set 7 lines to the cursor - when moving vertically using j/k
+set so=14
+
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = ","
+
+" Fast saving
+nmap <leader>w :w!<cr>
+
+" :W sudo saves the file 
+" (useful for handling the permission-denied error)
+command W w !sudo tee % > /dev/null
+
+" Don't redraw while executing macros (good performance config)
+set lazyredraw 
+
+" Turn backup off, since most stuff is in SVN, git et.c anyway...
+set nobackup
+set nowb
+set noswapfile
+
+set tabstop=4 shiftwidth=4 sts=4 expandtab
+autocmd FileType html setlocal tabstop=2 shiftwidth=2 sts=2 expandtab
+autocmd FileType css setlocal tabstop=2 shiftwidth=2 sts=2 expandtab
+autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 sts=2 expandtab
+autocmd FileType reason setlocal tabstop=2 shiftwidth=2 sts=2 expandtab
 
 call plug#begin('~/.local/share/nvim/plugged')
 
@@ -11,6 +39,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-vinegar'
 
 "Plug 'w0rp/ale'
@@ -110,6 +139,15 @@ nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gr :call LanguageClient#textDocument_rename()<CR>
 nnoremap <silent> gx :call LanguageClient#explainErrorAtPoint()<CR>
+
+" Search
+" Map Ctrl-/ to clear highlighting.
+" NOTE: It's very strange that <C-_> is vim's way of saying this.
+nnoremap <silent> <C-_> :nohl<CR>
+
+" vim-surround 
+nmap s  <Plug>Ysurround
+nmap S  <Plug>YSurround
 
 " Slime
 "let g:slime_target = "neovim"
