@@ -13,6 +13,7 @@ alias grep='rg'
 
 # git
 alias gad='git add'
+alias gam='git commit -am'
 alias gcl='git clone'
 alias gco='git checkout'
 alias gdi='git diff'

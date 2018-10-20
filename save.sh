@@ -1,9 +1,9 @@
-#! /bin/sh
-#save.sh
+#!/usr/bin/env bash
+set -euo pipefail
 
 cp ~/.bash_aliases ~/.dotfiles
 cp ~/.bashrc ~/.dotfiles
-cp ~/.bash_profile ~/.dotfiles
+# cp ~/.bash_profile ~/.dotfiles
 cp ~/.profile ~/.dotfiles
 cp ~/.config/nvim/init.vim ~/.dotfiles
 cd ~/.dotfiles
