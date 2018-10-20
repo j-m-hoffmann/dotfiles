@@ -11,15 +11,24 @@ alias du.='du --max-depth=1 | less'
 
 alias grep='rg'
 
-#alias ls="exa"
+alias l="exa"
 alias la="exa -a"
 alias ll="exa -la"
 alias l.='ls -d .*'
 
+# Git
+alias gad='git add'
+alias gcl='git clone'
+alias gco='git checkout'
+alias gdi='git diff'
+alias gcm='git commit -m'
+alias gpu='git push'
+alias gst='git status'
+
 alias nv='nvim'
 alias nvrc='nvim ~/.config/nvim/init.vim'
 
-#alias rmo='sudo pacman -Rs $(pacman -Qqdt)'
+# package management
 alias pcl='sudo paccache -rk2 && sudo pacman -Rs $(pacman -Qqdt)'
 alias pco="sudo nvim /etc/pacman.conf"
 alias pin="sudo pacman -Syu"
