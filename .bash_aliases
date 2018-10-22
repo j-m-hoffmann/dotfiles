@@ -14,11 +14,13 @@ alias grep='rg'
 # git
 alias gad='git add'
 alias gam='git commit -am'
+alias gbr='git checkout -b'
 alias gcl='git clone'
 alias gco='git checkout'
 alias gdi='git diff'
 alias gcm='git commit -m'
 alias gpu='git push'
+alias gpom='git push origin master'
 alias gst='git status'
 
 alias l='exa'
