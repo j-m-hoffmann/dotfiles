@@ -37,4 +37,4 @@ PATH="$PATH:$HOME/.npm_global/bin"
 
 export GOPATH=/home/user/prog/go
 
-export EDITOR=/usr/bin/nvim
+export EDITOR=/home/user/.local/bin/nvim

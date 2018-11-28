@@ -7,7 +7,11 @@ alias binds='bind -P | grep "can be" | less'
 
 alias cat='bat --theme "Solarized (light)"'
 
-alias du.='du --max-depth=1'
+# alias du='ncdu --exclude .git'
+# alias du="sn p --exclude '\.git'"
+alias du="sn o"
+alias du.='sn o -d=1'
+# alias du.='du -h --max-depth=1'
 
 alias grep='rg'
 
@@ -16,11 +20,13 @@ alias gad='git add'
 alias gam='git commit -am'
 alias gbr='git checkout -b'
 alias gcl='git clone'
+alias gcm='git commit -m'
 alias gco='git checkout'
 alias gdi='git diff'
-alias gcm='git commit -m'
-alias gpu='git push'
+alias glpo='git log --pretty=oneline'
 alias gpom='git push origin master'
+alias gpu='git push'
+alias grm='git rm'
 alias gst='git status'
 
 alias l='exa'
@@ -38,6 +44,7 @@ alias pin='sudo apt install'
 alias pli='apt list -a'
 alias pre='sudo apt remove'
 alias pup='sudo apt update && sudo apt upgrade'
+alias pui='sudo apt update && sudo apt install'
 
 # system files
 alias als='nvim ~/.bash_aliases && source ~/.bash_aliases'
@@ -49,6 +56,8 @@ alias pro='nvim ~/.profile && source ~/.profile'
 
 alias stpg='sudo -u postgres psql'
 
-alias sv='/usr/bin/vim.basic'
+# alias sv='/usr/bin/vim.basic'
 alias svrc='sv ~/.SpaceVim.d/init.toml'
-#alias vrc='vim ~/.SpaceVim.d/init.toml'
+
+alias vi='/usr/bin/vim.basic'
+alias vrc='vim ~/.vimrc'
