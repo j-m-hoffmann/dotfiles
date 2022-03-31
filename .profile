@@ -1,40 +1,24 @@
-# ~/.profile: executed by the command interpreter for login shells.
-# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
-# exists.
-# see /usr/share/doc/bash/examples/startup-files for examples.
-# the files are located in the bash-doc package.
+# Sample .profile for SUSE Linux
+# rewritten by Christian Steinruecken <cstein@suse.de>
+#
+# This file is read each time a login shell is started.
+# All other interactive shells will only read .bashrc; this is particularly
+# important for language settings, see below.
 
-# the default umask is set in /etc/profile; for setting the umask
-# for ssh logins, install and configure the libpam-umask package.
-#umask 022
-
-# if running bash
-if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
-    fi
-fi
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
+test -z "$PROFILEREAD" && . /etc/profile || true
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# OPAM configuration
-. /home/user/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+# For some news readers it makes sense to specify the NEWSSERVER variable here
+#export NEWSSERVER=your.news.server
 
-PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
-PATH="$PATH:$HOME/.cargo/bin"
-PATH="$PATH:/usr/lib/postgresql/10/bin"
-PATH="$PATH:$HOME/.scripts"
-PATH="$PATH:$HOME/.npm_global/bin"
+# export PATH="$HOME/.cargo/bin:$PATH"
+# export PATH="$HOME/go/bin:$PATH"
 
-export GOPATH=/home/user/prog/go
-
-export EDITOR=/home/user/.local/bin/nvim
+# export DOCKER_HOST=unix:///run/user/1000/docker.sock
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export JAVA_HOME="/usr/lib64/jvm/java-11-openjdk-11"
+# export PGDATA=/var/lib/pgsql/data

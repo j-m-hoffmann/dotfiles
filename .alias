@@ -1,0 +1,94 @@
+alias kc="kdeconnect-cli"
+alias sc="shellcheck"
+
+# ASDF
+alias aup="asdf plugin update --all"
+
+# CARGO
+alias cin="RUSTFLAGS='-C target-cpu=native' cargo install"
+alias cbr="RUSTFLAGS='-C target-cpu=native' cargo build --release"
+
+# CURL
+alias curl="curl --proto '=https' --tlsv1.2"
+alias curlunsafe="curl"
+
+# DISKS
+alias lsd="lsblk -o UUID,NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL,MODEL"
+
+# DOCKER
+alias dcu="sudo systemctl start docker && sudo setfacl --modify user:user:rw /var/run/docker.sock && docker-compose up"
+alias delete-all-containers='sudo docker rm "$(sudo docker ps -aq)"'
+alias delete-all-images='sudo docker rmi "$(sudo docker images -q)"'
+alias dup="sudo systemctl start docker && sudo setfacl --modify user:user:rw /var/run/docker.sock"
+alias pgup="sudo systemctl start postgresql" 
+alias start-docker="sudo systemctl start docker && sudo setfacl --modify user:user:rw /var/run/docker.sock"
+
+# GIT
+alias gad="git add"
+alias gam="git commit -am"
+alias gbr="git checkout -b"
+alias gcl="git clone --depth 1"
+alias gcm="git commit -m"
+alias gco="git checkout"
+alias gd="git diff"
+alias glp="git log -p -1"
+alias glpo="git log --pretty=oneline"
+alias gpom="git push origin master"
+alias gpu="git push"
+alias gra="git rebase -i --autosquash"
+alias grm="git rm"
+alias grl="git reflog"
+alias gst="git status"
+alias gu="gitui"
+
+# GRADLE
+alias gkc="~/prog/android/GradleKotlinConverter/gradlekotlinconverter.kts"
+
+# LS
+alias ll='exa -la --icons'
+alias la='exa -a --icons'
+alias l='exa --icons'
+alias lh='exa -dF .??* --icons'
+alias llh='exa -ladF .??* --icons'
+alias tree='exa -DT --icons'
+
+# PACKAGE MANAGEMENT
+# alias puce="sudo -v && sudo zypper refresh && sudo zypper dup --allow-vendor-change && exit"
+alias pal="sudo zypper addlock"
+alias pcl="sudo zypper cc && sudo zypper purge-kernels"
+alias pin="sudo zypper install"
+alias pla="zypper search"
+alias pli="zypper packages --installed-only | rg "
+alias plu="sudo -v && sudo zypper refresh && zypper list-updates && zypper list-patches"
+alias pre="sudo zypper remove"
+alias prl="sudo zypper removelock"
+alias puc="sudo -v && sudo zypper refresh && sudo zypper dup && sudo zypper purge-kernels && espeak-ng 'upgrade complete'"
+alias pup="sudo -v && sudo zypper refresh && sudo zypper dup && sudo zypper purge-kernels"
+#alias puc="sudo -v && sudo zypper refresh && sudo zypper dup && sudo zypper cc && sudo zypper purge-kernels && espeak-ng 'upgrade complete'"
+alias pur="sudo -v && sudo zypper refresh && sudo zypper dup && sudo zypper cc && sudo zypper purge-kernels && sudo reboot now"
+alias pus="sudo -v && sudo zypper refresh && sudo zypper dup && sudo zypper cc && sudo zypper purge-kernels && sudo shutdown now"
+
+# QUICK EDITS
+alias als="nvim ~/.alias && source ~/.alias"
+alias brc="nvim ~/.bashrc && source ~/.bashrc"
+alias egr="sudo nvim /etc/default/grub && sudo update-grub"
+alias fst="sudo nvim /etc/fstab"
+alias pro="nvim ~/.profile && source ~/.profile"
+
+# QUICK POWER
+alias ssn="sudo shutdown now"
+alias srn="sudo reboot now"
+
+# SYSTEMD
+alias sden="sudo systemctl enable --now"
+alias sdls="sudo systemctl --type=service"
+alias sds="sudo systemctl start"
+
+# VIM
+alias nrc="cd ~/.config/nvim/ && nvim init.lua"
+alias npi="nvim ~/.config/nvim/lua/plugins.lua"
+alias nm="nvim ~/.config/nvim/lua/mappings.lua"
+alias nv="nvim"
+alias scratch="nvim scratch.txt"
+alias vic="cat ~/bash-vi-editing-mode-cheat-sheet.txt | less"
+
